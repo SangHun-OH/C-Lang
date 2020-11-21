@@ -1,0 +1,51 @@
+#include <stdio.h>
+
+double func(double a, double b, double c, double x)
+{
+	double d = (a * x * x) + (b * x) + c;
+	return d;
+}
+
+double integ(double start, double end, double step, double a, double b, double c)
+{
+	double rect_integ = 0;
+    double f=0.0;
+    
+	for (double i = start; i < end; i+=step) {
+		f = func(a, b, c, i);
+		if (i+step > end) {
+			rect_integ += f * (end - i);
+		}
+		else {
+			rect_integ += f * step;
+		}
+	}
+	return rect_integ;
+}
+
+
+int main()
+{
+	double a, b, c;
+	double start, end, step;
+
+	printf("a: ");
+	scanf("%lf", &a);
+
+	printf("b: ");
+	scanf("%lf", &b);
+
+	printf("c: ");
+	scanf("%lf", &c);
+
+	printf("start: ");
+	scanf("%lf", &start);
+
+	printf("end: ");
+	scanf("%lf", &end);
+
+	printf("step: ");
+	scanf("%lf", &step);
+
+	printf("area: %lf",integ(start, end, step, a, b, c));
+}
